@@ -1,0 +1,352 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dark-slate: #000000;
+    --slate-bg: #1a1a1a;
+    --card-bg: #2a2a2a;
+    --accent-primary: #ffffff;
+    --accent-secondary: #e0e0e0;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --empty-card: #4a4a4a;
+    --border-color: #404040;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--dark-slate);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+header {
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Week Navigation */
+.week-navigation {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    background: var(--card-bg);
+    border: 2px solid var(--accent-primary);
+    color: var(--accent-primary);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: var(--accent-primary);
+    color: var(--dark-slate);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.nav-btn:active {
+    transform: translateY(0);
+}
+
+.week-display {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 200px;
+    text-align: center;
+}
+
+/* Edit Mode Toggle */
+.edit-mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.toggle-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    transition: 0.3s;
+    border-radius: 30px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--text-secondary);
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(30px);
+    background-color: var(--dark-slate);
+}
+
+/* Calendar Grid */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 20px;
+}
+
+/* Workout Card */
+.workout-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.workout-card.empty {
+    background: var(--empty-card);
+    border-color: #606060;
+}
+
+.workout-card.empty:hover {
+    border-color: #808080;
+    box-shadow: 0 4px 12px rgba(128, 128, 128, 0.3);
+}
+
+.workout-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.day-header {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--accent-primary);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.workout-field {
+    margin-bottom: 15px;
+}
+
+.workout-field label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.workout-field .value {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    min-height: 24px;
+}
+
+.workout-field input,
+.workout-field textarea {
+    width: 100%;
+    padding: 8px 12px;
+    background: var(--dark-slate);
+    border: 2px solid var(--accent-secondary);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.workout-field input:focus,
+.workout-field textarea:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.workout-field textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.save-btn {
+    margin-top: auto;
+    padding: 10px 20px;
+    background: var(--accent-primary);
+    color: var(--dark-slate);
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: none;
+}
+
+.save-btn:hover {
+    background: var(--accent-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+}
+
+.save-btn:active {
+    transform: translateY(0);
+}
+
+.edit-mode .save-btn {
+    display: block;
+}
+
+.edit-mode .workout-field .value {
+    display: none;
+}
+
+.edit-mode .workout-field input,
+.edit-mode .workout-field textarea {
+    display: block;
+}
+
+.workout-field input,
+.workout-field textarea {
+    display: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .week-navigation {
+        justify-content: center;
+        order: 2;
+    }
+
+    .edit-mode-toggle {
+        justify-content: center;
+        order: 1;
+        margin-bottom: 10px;
+    }
+
+    .nav-btn {
+        flex: 1;
+        min-width: 100px;
+    }
+
+    .week-display {
+        width: 100%;
+        order: 3;
+        margin-top: 10px;
+    }
+
+    .calendar {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .workout-card {
+        min-height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.75rem;
+    }
+
+    .nav-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .workout-card {
+        padding: 15px;
+        min-height: 160px;
+    }
+
+    .day-header {
+        font-size: 1.1rem;
+    }
+}
+
